@@ -1,8 +1,16 @@
+const API_KEY = "9dc9fbb8cdf3f17b6864a0298f318a9f";
+
 $(function() {
-  $('#back a').on('click',function(event){
-    $('body, html').animate({
-      scrollTop:0
-    }, 800);
-    event.preventDefault();
+  $('#btn').on('click', function() {
+    // 入力された都市名でWebAPIに天気情報をリクエスト
+    $.ajax({
+      url: "https://api.openweathermap.org/data/2.5/weather?q=" + $('#cityname').val() + "&units=metric&appid=" + API_KEY,
+      dataType : 'jsonp',
+    }).done(function (data){
+      //通信成功
+    }).fail(function (data) {
+      //通信失敗
+    });
+    })
   });
 });
